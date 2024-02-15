@@ -9,7 +9,8 @@ namespace RentalCar.Controlles
         public RentalCarController()
         { 
         }
-        public IActionResult GetAllcars()
+        [HttpGet]
+        public IActionResult GetAllCars()
         {
 
             return Ok();
