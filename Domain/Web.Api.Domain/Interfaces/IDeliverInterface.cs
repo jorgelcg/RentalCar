@@ -1,8 +1,10 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+
 namespace Web.Api.Domain.Interfaces
 {
-    internal interface IDeliverInterface
+    public interface IDeliverInterface
     {
-        Task DeliverService(int userID);
+        Task<IActionResult> DeliverService(string userID);
     }
 }

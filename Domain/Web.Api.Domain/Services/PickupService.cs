@@ -1,15 +1,23 @@
-﻿using Web.Api.Domain.Entities;
+﻿
 using Web.Api.Domain.Interfaces;
+using Web.Api.Infrastructure.DBContext;
+using Web.Api.Infrastructure.Models;
 
 namespace Web.Api.Domain.Services
 {
-    internal class PickupService : IPickupInterface
+    public class PickupService : IPickupInterface
     {
-        public Task PickUpService(PickupDTO user)
-        {
-            //RECIBIR INFORMACION DEL PARA APARTAR 
-            throw new NotImplementedException();
+        private readonly MongoDBContext _context;
+        public IEnumerable<Vehicle> _;
 
+        public PickupService(MongoDBContext mongoDBContext) {
+            _context = mongoDBContext;
+        }
+        public Task<IEnumerable<Vehicle>> PickUpService(Vehicle pickup)
+        {
+            _ = (IEnumerable<Vehicle>)_context.Vehicle.InsertOneAsync(pickup);
+
+            return (Task<IEnumerable<Vehicle>>)_;
         }
     }
 }

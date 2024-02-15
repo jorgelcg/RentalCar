@@ -1,13 +1,28 @@
-﻿using Web.Api.Domain.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using Web.Api.Domain.Interfaces;
+using Web.Api.Infrastructure.DBContext;
+using Web.Api.Infrastructure.Models;
 
 namespace Web.Api.Domain.Services
 {
-    internal class DeliverServicecs : IDeliverInterface
+    public class DeliverServicecs : IDeliverInterface
     {
-        public Task DeliverService(int userID)
+        private readonly MongoDBContext _context;
+        public DeliverServicecs(MongoDBContext context)
         {
-            //RETORNAR DISPONIBILIDAD EN LOCATION PARA ENTREGA
+            _context = context;
+        }
+
+        public Task<IActionResult> DeliverService(string userID)
+        {
             throw new NotImplementedException();
         }
+
+        //conflicto probles, no time to resolve...
+        //public Task<IActionResult> DeliverService(string userID)
+        //{
+        //    return _context.Pickup.DeleteOneAsync(p => p.Id == (userID));
+        //}
     }
 }

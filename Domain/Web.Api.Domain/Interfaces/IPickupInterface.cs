@@ -1,9 +1,9 @@
-﻿using Web.Api.Domain.Entities;
+﻿using Web.Api.Infrastructure.Models;
 
 namespace Web.Api.Domain.Interfaces
 {
-    internal interface IPickupInterface
+    public interface IPickupInterface
     {
-        Task PickUpService(PickupDTO user);
+        Task<IEnumerable<Vehicle>> PickUpService(Vehicle pickup);
     }
 }

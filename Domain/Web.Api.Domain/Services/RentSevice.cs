@@ -1,15 +1,21 @@
-﻿using Web.Api.Domain.Entities;
+﻿using MongoDB.Driver;
 using Web.Api.Domain.Interfaces;
+using Web.Api.Infrastructure.DBContext;
+using Web.Api.Infrastructure.Models;
 
 namespace Web.Api.Domain.Services
 {
     public class RentSevice : IRentInterface
     {
-        public RentSevice() { }
-        public List<RentDTO> GetLocationCar(string Localidad)
+        private readonly MongoDBContext _context;
+        public RentSevice(MongoDBContext context) {
+            _context = context;
+        }
+        public async Task<IEnumerable<Vehicle>> GetLocationCar(string localidad)
         {
-            List<RentDTO>  ss = new List<RentDTO>();
-            return ss;
+            var Location = await _context.Vehicle.Find(Localidad => Localidad.Location == localidad).FirstAsync();
+
+            return (IEnumerable<Vehicle>)Location;
         }
     }
 }

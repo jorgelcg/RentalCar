@@ -1,9 +1,9 @@
-﻿using Web.Api.Domain.Entities;
+﻿using Web.Api.Infrastructure.Models;
 
 namespace Web.Api.Domain.Interfaces
 {
     public interface IRentInterface
     {
-        List<RentDTO> GetLocationCar(string Localidad);
+        Task<IEnumerable<Vehicle>> GetLocationCar(string Localidad);
     }
 }

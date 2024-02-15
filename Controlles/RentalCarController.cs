@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentalCar.DTOs;
-using Web.Api.Domain.Entities;
+using System.Collections;
+
 using Web.Api.Domain.Services;
+using Web.Api.Infrastructure.Models;
 
 namespace RentalCar.Controlles
 {
@@ -10,33 +12,43 @@ namespace RentalCar.Controlles
     public class RentalCarController : ControllerBase
     {
         private readonly RentSevice _rentSevice;
-        
-        public RentalCarController(RentSevice rentSevice)
+        private readonly PickupService _pickupService;
+        private readonly DeliverServicecs _deliverServicecs;
+
+        public RentalCarController(RentSevice rentSevice,
+            PickupService pickupService, DeliverServicecs deliverServicecs)
         {
             _rentSevice = rentSevice;
+            _pickupService = pickupService;
+            _deliverServicecs = deliverServicecs;
         }
 
         [HttpGet]
         [Route("GetByLocation")]
-        public IActionResult GetByLocation(string Localidad)
+        public IEnumerable GetByLocation(string Localidad)
         {
-            List<RentDTO> _ = _rentSevice.GetLocationCar(Localidad);
+          var _ = _rentSevice.GetLocationCar(Localidad);
 
-            return Ok(_);
+            return (IEnumerable)_;
         }
-        [HttpPut]
-        [Route("PickUpService")]
-        public IEnumerable<List<ResponseDto>> PickUpService([FromBody] PickupResquestDTO pickupResquestDTO)
-        {
-            return null;
-        }
+        //Service does not work....
         [HttpPost]
-        [Route("DeliverService")]
-        public IEnumerable<List<ResponseDto>> DeliverService([FromBody] DeliverRequestDTO deliverRequestDTO)
+        [Route("PickUpService")]
+        public  IEnumerable PickUp(Vehicle pickup)
         {
+            //var pickups = _pickupService.PickUpService(pickup);
 
-            //RETORNAR LOCALIDAD DE RETORNO
-            return null;
+            //return (IEnumerable)pickups;
+
+            return (IEnumerable)NoContent();
+        }
+        [HttpDelete]
+        [Route("DeliverService")]
+        public IEnumerable<List<ResponseDto>> DeliverService(string deliverDTO)
+        {
+         var d =  _deliverServicecs.DeliverService(deliverDTO);
+
+            return (IEnumerable<List<ResponseDto>>)d;
         }
     }
 }

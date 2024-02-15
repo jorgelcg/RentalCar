@@ -2,9 +2,9 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace Web.Api.Domain.Entities
+namespace Web.Api.Infrastructure.Models
 {
-    public class PickupDTO
+    public class Vehicles
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
