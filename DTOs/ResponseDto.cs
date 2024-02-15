@@ -2,5 +2,6 @@
 {
     public class ResponseDto
     {
+        public int Id = 0;
     }
 }

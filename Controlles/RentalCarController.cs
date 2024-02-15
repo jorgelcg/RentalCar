@@ -10,35 +10,39 @@ namespace RentalCar.Controlles
     public class RentalCarController : ControllerBase
     {
         private readonly RentSevice _rentSevice;
-        private readonly ILogger _logger;
-        public RentalCarController(RentSevice rentSevice, ILogger logger)
+        
+        public RentalCarController(RentSevice rentSevice)
         {
             _rentSevice = rentSevice;
-            _logger = logger;
         }
 
-        [HttpPost("{Localidad}")]
+        [HttpGet]
         [Route("GetByLocation")]
-         public async Task<IEnumerable<string>> GetByLocation([FromBody]RentDTO location)
+        public IActionResult GetByLocation(string Localidad)
         {
-            _logger.LogInformation("Consultando todos los Vehiculos");
+            List<RentDTO> _ = _rentSevice.GetLocationCar(Localidad);
+            
+            return Ok(_);
+        }
 
-             //await _rentSevice.GetLocationCar(location);
+        //[HttpPost]
+        //public IEnumerable<List<ResponseDto>> GetByLocation(string Localidad)
+        //{
+        //    _logger.LogInformation("Consultando todos los Vehiculos");
 
-            return new string[] {"value1","value2"};
+        //    //await _rentSevice.GetLocationCar(location);
+        //    var ss = new List<ResponseDto>();
+        //    return (IEnumerable<List<ResponseDto>>)ss;
+        //}
+        [HttpPut]
+        [Route("PickUpService")]
+        public IEnumerable<List<ResponseDto>> PickUpService([FromBody]PickupResquestDTO pickupResquestDTO)
+        {
+            return null;
         }
         [HttpPost]
-        //public IEnumerable<List<ResponseDto>> PickUpService(PickupResquestDTO pickupResquestDTO)
-        //{
-        //    return null;
-        //}
-        //[HttpPut]
-        //public IEnumerable<List<ResponseDto>> EditService(string UserID)
-        //{
-        //    return null;
-        //}
-        [HttpPost]
-        public IEnumerable<List<ResponseDto>> DeliverService(string UserID)
+        [Route("DeliverService")]
+        public IEnumerable<List<ResponseDto>> DeliverService([FromBody]DeliverRequestDTO deliverRequestDTO)
         {
 
             //RETORNAR LOCALIDAD DE RETORNO

@@ -1,7 +1,13 @@
+using Web.Api.Domain.Interfaces;
+using Web.Api.Domain.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddScoped<RentSevice>(); 
+
 // Add services to the container.
- void ConfigureServices(IServiceCollection services)
+void ConfigureServices(IServiceCollection services)
 {
    
     services.AddControllers();
