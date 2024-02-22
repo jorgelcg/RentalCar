@@ -12,6 +12,7 @@ namespace RentalCar.Controlles
 
         public RentalCarController(RentSevice rentSevice) => _Service = rentSevice;
 
+        //get data by location to collection vehicle
         [HttpGet]
         [Route("GetByLocation")]
         public async Task<IActionResult> GetByLocation(string Localidad)
@@ -23,7 +24,7 @@ namespace RentalCar.Controlles
             }
             return Ok(vehivle);
         }
-
+        //update date to collection vehicle
         [HttpPut]
         [Route("PickUpService")]
         public async Task<Vehicle> PickUp(int IdVehicle, int cantidadays, string IdUser)
@@ -32,6 +33,7 @@ namespace RentalCar.Controlles
 
             return _;
         }
+        //update date to collection vehicle, an returning datetame an location to return it.
         [HttpDelete]
         [Route("DeliverService")]
         public async Task<IActionResult> DeliverService(int IdVehicle, DateTime Fechadeentrega )

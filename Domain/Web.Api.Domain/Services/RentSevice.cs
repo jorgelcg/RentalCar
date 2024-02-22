@@ -18,13 +18,16 @@ namespace Web.Api.Domain.Services
             _vehicleCollection = mongoDatabase.GetCollection<Vehicle>(
                 mongodbsettings.Value.VehicleCollectionName);
         }
+        //getting vehicles by location user.
+        //example: suba
         public async Task<Vehicle> GetLocationCar(string localidad)
         {
            var  Location =  await _vehicleCollection.Find(Localidad => Localidad.Location == localidad).FirstOrDefaultAsync();
 
             return Location;
         }
-        
+        //orderind de service by IdVehicle, cant days, IdUser.
+        //retur object with data seted.
         public async Task<Vehicle> PickUpService(int IdVehicle, int cantidadays,string IdUser)
         {
             var GetVehicle = await _vehicleCollection.Find(x => x.Id == IdVehicle).FirstOrDefaultAsync();
@@ -40,7 +43,7 @@ namespace Web.Api.Domain.Services
             await _vehicleCollection.ReplaceOneAsync(GetVehicle => GetVehicle.Id == IdVehicle, GetVehicle);
             return GetVehicle;
         }
-
+        //update de service giving IdVehicle to deliver and retur data... 
         public async Task<Vehicle> DeliverService(int IdVehicle)
         {
             var GetVehicle = await _vehicleCollection.Find(x => x.Id == IdVehicle).FirstOrDefaultAsync();

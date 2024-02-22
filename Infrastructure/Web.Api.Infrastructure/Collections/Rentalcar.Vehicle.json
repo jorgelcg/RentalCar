@@ -1,0 +1,44 @@
+[{
+  "_id": 8752,
+  "type": "campero",
+  "brand": "mazda",
+  "color": "azul",
+  "location": "suba",
+  "state": "disponible",
+  "cantDay": 0,
+  "amount": 0,
+  "iduser": ""
+},
+{
+  "_id": 7000,
+  "type": "camioneta",
+  "brand": "bmw",
+  "color": "negro",
+  "location": "suba",
+  "state": "ocupado",
+  "cantDay": 0,
+  "amount": 0,
+  "iduser": ""
+},
+{
+  "_id": 7020,
+  "type": "deportivo",
+  "brand": "toyota",
+  "color": "rojo",
+  "location": "bosa",
+  "state": "disponible",
+  "cantDay": 0,
+  "amount": 0,
+  "iduser": ""
+},
+{
+  "_id": 8645,
+  "type": "camion",
+  "brand": "hyunday",
+  "color": "gris",
+  "location": "bosa",
+  "state": "ocupado",
+  "cantDay": 0,
+  "amount": 0,
+  "iduser": ""
+}]

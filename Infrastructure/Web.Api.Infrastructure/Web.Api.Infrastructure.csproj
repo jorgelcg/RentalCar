@@ -10,4 +10,10 @@
     <PackageReference Include="MongoDB.Driver" Version="2.23.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Collections\Rentalcar.Vehicle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
