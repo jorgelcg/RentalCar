@@ -1,5 +1,4 @@
-﻿
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System.Text.Json.Serialization;
 
@@ -31,6 +30,17 @@ namespace Web.Api.Infrastructure.Models
         [JsonPropertyName("state")]
         public string State { get; set; }
 
+        [BsonElement("cantDay")]
+        [JsonPropertyName("cantDay")]
+        public int CantDay { get; set; }
+
+        [BsonElement("amount")]
+        [JsonPropertyName("amount")]
+        public int  Amount { get; set; }
+
+        [BsonElement("iduser")]
+        [JsonPropertyName("iduser")]
+        public string Iduser { get; set; }
 
     }
 }

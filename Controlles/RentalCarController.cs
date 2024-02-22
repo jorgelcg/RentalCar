@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web.Api.Domain.Services;
+using Web.Api.Infrastructure.Models;
 
 namespace RentalCar.Controlles
 {
@@ -22,25 +23,22 @@ namespace RentalCar.Controlles
             }
             return Ok(vehivle);
         }
-        
-        /*[HttpPost]
+
+        [HttpPut]
         [Route("PickUpService")]
-        public async Task<IActionResult> PickUp(PickupDTO pickup)
+        public async Task<Vehicle> PickUp(int IdVehicle, int cantidadays, string IdUser)
         {
-            //var pickups = _pickupService.PickUpService(pickup);
+           var _ = await _Service.PickUpService(IdVehicle,cantidadays,IdUser);
 
-            //return (IEnumerable)pickups;
-
-            return (IEnumerable)NoContent();
-        }*/
-
-        /*[HttpPut]
+            return _;
+        }
+        [HttpDelete]
         [Route("DeliverService")]
-        public IEnumerable<List<ResponseDto>> DeliverService(string IdVehicle)
+        public async Task<IActionResult> DeliverService(int IdVehicle, DateTime Fechadeentrega )
         {
-         var d = _deliverInterface.DeliverService(IdVehicle);
+            var _ = await _Service.DeliverService(IdVehicle);
 
-            return (IEnumerable<List<ResponseDto>>)d;
-        }*/
-    }
+            return Ok("Entrega ajendada el:  " + Fechadeentrega + " en la localidad de:  " + _.Location);
+        } 
+        }
 }

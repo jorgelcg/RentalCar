@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Web.Api.Domain.Entities;
 using Web.Api.Domain.Interfaces;
 using Web.Api.Infrastructure.Models;
 
@@ -25,17 +24,34 @@ namespace Web.Api.Domain.Services
 
             return Location;
         }
-        //retornar la confirmacion del pickup
-        //public Task<ResponseDTO> PickUpService(PickupDTO pickup)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
+        public async Task<Vehicle> PickUpService(int IdVehicle, int cantidadays,string IdUser)
+        {
+            var GetVehicle = await _vehicleCollection.Find(x => x.Id == IdVehicle).FirstOrDefaultAsync();
 
-        //public Task<IActionResult> DeliverService(string userID)
-        //{
-        //    _ = (IEnumerable<Vehicle>)_context.Vehicle.InsertOne(userID);
+            int amount = (cantidadays * 100000);
 
-        //    return (Task<IEnumerable<Vehicle>>)_;
-        //}
+            GetVehicle.Id = IdVehicle;
+            GetVehicle.CantDay = cantidadays;
+            GetVehicle.Amount = amount;
+            GetVehicle.State = "reservado";
+            GetVehicle.Iduser = IdUser;
+
+            await _vehicleCollection.ReplaceOneAsync(GetVehicle => GetVehicle.Id == IdVehicle, GetVehicle);
+            return GetVehicle;
+        }
+
+        public async Task<Vehicle> DeliverService(int IdVehicle)
+        {
+            var GetVehicle = await _vehicleCollection.Find(x => x.Id == IdVehicle).FirstOrDefaultAsync();
+            GetVehicle.Id = IdVehicle;
+            GetVehicle.CantDay = 0;
+            GetVehicle.Amount = 0;
+            GetVehicle.State = "disponible";
+            GetVehicle.Iduser = "";
+            var _ = await _vehicleCollection.ReplaceOneAsync(x => x.Id == IdVehicle, GetVehicle);
+
+            return GetVehicle;
+        }
     }
 }
