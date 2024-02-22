@@ -4,6 +4,6 @@ namespace Web.Api.Domain.Interfaces
 {
     public interface IRentInterface
     {
-        Task<IEnumerable<Vehicle>> GetLocationCar(string Localidad);
+        Task<Vehicle> GetLocationCar(string Localidad);
     }
 }

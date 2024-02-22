@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentalCar", "RentalCar.csproj", "{6319B857-8E2E-48B1-B3E3-6EB402F1AD17}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{02C20C32-CA49-4593-9586-4BE07752F799}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplication", "Aplication", "{02C20C32-CA49-4593-9586-4BE07752F799}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{FC99F4AB-1D80-4FD0-9809-95114C6D4CD7}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Domain", "Domain\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Infrastructure", "Infrastructure\Web.Api.Infrastructure\Web.Api.Infrastructure.csproj", "{340ECE9E-301B-46F8-9324-D0E65A74063E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api.Test", "Test\Web.Api.Test\Web.Api.Test.csproj", "{23A7A94A-56DC-4714-A595-897A2CFB8C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Test", "Test\Web.Api.Test\Web.Api.Test.csproj", "{23A7A94A-56DC-4714-A595-897A2CFB8C3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

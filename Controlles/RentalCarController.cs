@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RentalCar.DTOs;
-using System.Collections;
-
 using Web.Api.Domain.Services;
-using Web.Api.Infrastructure.Models;
 
 namespace RentalCar.Controlles
 {
@@ -11,44 +7,40 @@ namespace RentalCar.Controlles
     [ApiController]
     public class RentalCarController : ControllerBase
     {
-        private readonly RentSevice _rentSevice;
-        private readonly PickupService _pickupService;
-        private readonly DeliverServicecs _deliverServicecs;
+        private readonly RentSevice _Service;
 
-        public RentalCarController(RentSevice rentSevice,
-            PickupService pickupService, DeliverServicecs deliverServicecs)
-        {
-            _rentSevice = rentSevice;
-            _pickupService = pickupService;
-            _deliverServicecs = deliverServicecs;
-        }
+        public RentalCarController(RentSevice rentSevice) => _Service = rentSevice;
 
         [HttpGet]
         [Route("GetByLocation")]
-        public IEnumerable GetByLocation(string Localidad)
+        public async Task<IActionResult> GetByLocation(string Localidad)
         {
-          var _ = _rentSevice.GetLocationCar(Localidad);
-
-            return (IEnumerable)_;
+            var vehivle = await _Service.GetLocationCar(Localidad);
+            if (vehivle is null)
+            {
+                return NotFound();
+            }
+            return Ok(vehivle);
         }
-        //Service does not work....
-        [HttpPost]
+        
+        /*[HttpPost]
         [Route("PickUpService")]
-        public  IEnumerable PickUp(Vehicle pickup)
+        public async Task<IActionResult> PickUp(PickupDTO pickup)
         {
             //var pickups = _pickupService.PickUpService(pickup);
 
             //return (IEnumerable)pickups;
 
             return (IEnumerable)NoContent();
-        }
-        [HttpDelete]
+        }*/
+
+        /*[HttpPut]
         [Route("DeliverService")]
-        public IEnumerable<List<ResponseDto>> DeliverService(string deliverDTO)
+        public IEnumerable<List<ResponseDto>> DeliverService(string IdVehicle)
         {
-         var d =  _deliverServicecs.DeliverService(deliverDTO);
+         var d = _deliverInterface.DeliverService(IdVehicle);
 
             return (IEnumerable<List<ResponseDto>>)d;
-        }
+        }*/
     }
 }

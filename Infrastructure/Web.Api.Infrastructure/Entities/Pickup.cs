@@ -4,7 +4,7 @@ using MongoDB.Bson;
 
 namespace Web.Api.Infrastructure.Models
 {
-    public class Vehicles
+    public class Pickup
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

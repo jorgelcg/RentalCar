@@ -8,12 +8,21 @@
 
   <ItemGroup>
     <Compile Remove="Domain\**" />
+    <Compile Remove="Infrastructure\**" />
+    <Compile Remove="Test\**" />
     <Content Remove="Domain\**" />
+    <Content Remove="Infrastructure\**" />
+    <Content Remove="Test\**" />
     <EmbeddedResource Remove="Domain\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="Test\**" />
     <None Remove="Domain\**" />
+    <None Remove="Infrastructure\**" />
+    <None Remove="Test\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
     <PackageReference Include="MongoDB.Driver" Version="2.23.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
