@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web.Api.Domain.Services;
 using Web.Api.Infrastructure.Models;
 
 namespace RentalCar.Controlles
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RentalCarController : ControllerBase
